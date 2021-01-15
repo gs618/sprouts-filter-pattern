@@ -17,4 +17,13 @@ public class FilterTest {
 		integerListFilterChain.addFilter(step2Filter1Option1).addFilter(step1Filter1Option1);
 		integerListFilterChain.doFilter(null, null);
 	}
+
+	@Test
+	public void filterChainOrderTest() {
+		FilterChain<Integer, List<Integer>> integerListFilterChain = new FilterChain<>();
+		Step1Filter1Option1 step1Filter1Option1 = new Step1Filter1Option1();
+		Step2Filter1Option1 step2Filter1Option1 = new Step2Filter1Option1();
+		integerListFilterChain.addFilter(1, step2Filter1Option1).addFilter(10, step1Filter1Option1);
+		integerListFilterChain.doFilter(null, null);
+	}
 }

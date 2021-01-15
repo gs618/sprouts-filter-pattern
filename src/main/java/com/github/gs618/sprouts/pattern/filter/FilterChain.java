@@ -39,6 +39,17 @@ public class FilterChain<I, O> {
 		} else {
 			priority = Filter.DEFAULT_PRIORITY;
 		}
+		return addFilter(priority, filter);
+	}
+
+	/**
+	 * add a filter
+	 *
+	 * @param priority the smaller of the number, the higher of the priority
+	 * @param filter	Filter
+	 * @return FilterChain
+	 */
+	public FilterChain<I, O> addFilter(Integer priority, Filter<I, O> filter) {
 		filters.put(priority, filter);
 		return reset();
 	}
