@@ -3,6 +3,7 @@ package com.github.gs618.sprouts.pattern.filter;
 /**
  * @author sgao
  */
+@FunctionalInterface
 public interface Filter<I, O> {
 
 	int DEFAULT_PRIORITY = 256;

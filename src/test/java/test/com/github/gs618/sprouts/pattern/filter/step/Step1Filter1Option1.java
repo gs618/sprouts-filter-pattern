@@ -5,10 +5,10 @@ import com.github.gs618.sprouts.pattern.filter.FilterChain;
 import com.github.gs618.sprouts.pattern.filter.FilterPriority;
 
 @FilterPriority(1)
-public class Step1Filter1Option1 implements Filter {
+public class Step1Filter1Option1<I, O> implements Filter<I, O> {
 
 	@Override
-	public void doFilter(Object input, Object output, FilterChain filterChain) {
+	public void doFilter(I input, O output, FilterChain<I, O> filterChain) {
 		System.out.println("upload file via api gateway");
 		filterChain.doFilter(input, output);
 	}
