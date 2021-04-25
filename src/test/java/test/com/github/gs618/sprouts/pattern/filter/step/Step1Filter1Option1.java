@@ -2,9 +2,9 @@ package test.com.github.gs618.sprouts.pattern.filter.step;
 
 import com.github.gs618.sprouts.pattern.filter.Filter;
 import com.github.gs618.sprouts.pattern.filter.FilterChain;
-import com.github.gs618.sprouts.pattern.filter.FilterPriority;
+import com.github.gs618.sprouts.pattern.filter.Priority;
 
-@FilterPriority(1)
+@Priority(1)
 public class Step1Filter1Option1 implements Filter {
 
 	@Override

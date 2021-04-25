@@ -19,18 +19,16 @@ public class FilterChain<I, O> {
 	private boolean success = true;
 
 	/**
-	 *
 	 * @return Null: No exception happens during the filterChain runs, the flag success should be true
-	 * 		Not null: there must be an exception thrown out during the process, the flag success should be false
+	 * Not null: there must be an exception thrown out during the process, the flag success should be false
 	 */
 	public Exception getException() {
 		return exception;
 	}
 
 	/**
-	 *
 	 * @return true: success
-	 * 				false: failure
+	 * false: failure
 	 */
 	public boolean isSuccess() {
 		return success;
@@ -57,7 +55,10 @@ public class FilterChain<I, O> {
 					filter.postFilter(input, output);
 				}
 			} else {
-				doFilter(input, output);
+				// if current filter does not run, then we'd know if the rest filters run.
+				if (filter.shouldRestFilter(input, output)) {
+					doFilter(input, output);
+				}
 			}
 		}
 	}
@@ -69,12 +70,12 @@ public class FilterChain<I, O> {
 	 * @return FilterChain
 	 */
 	public FilterChain<I, O> addFilter(Filter<I, O> filter) {
-		FilterPriority annotation = filter.getClass().getAnnotation(FilterPriority.class);
+		Priority annotation = filter.getClass().getAnnotation(Priority.class);
 		int priority;
 		if (Objects.nonNull(annotation)) {
 			priority = annotation.value();
 		} else {
-			priority = Filter.DEFAULT_PRIORITY;
+			priority = filter.getPriority();
 		}
 		return addFilter(priority, filter);
 	}
