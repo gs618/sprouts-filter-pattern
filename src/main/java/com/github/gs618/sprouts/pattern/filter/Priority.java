@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-public @interface FilterPriority {
+public @interface Priority {
 
 	/**
 	 * more smaller, more soon it will be invoked
