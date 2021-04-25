@@ -58,6 +58,8 @@ public class FilterChain<I, O> {
 				// if current filter does not run, then we'd know if the rest filters run.
 				if (filter.shouldRestFilter(input, output)) {
 					doFilter(input, output);
+				} else {
+					success = false;
 				}
 			}
 		}
